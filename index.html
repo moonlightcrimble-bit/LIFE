@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIFE</title>
-  
+<title>LIFE.</title>
+
 <link rel="icon" type="image/png" href="lifee.png">
   
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root {
   --red: #cc0000;
@@ -19,13 +19,11 @@
   --dark2: #080808;
   --dark3: #0c0005;
   --text: #e0d0d0;
-  --muted: #3a2222;
   --muted2: #6a4444;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--dark);
   color: var(--text);
@@ -34,80 +32,69 @@ body {
   cursor: crosshair;
 }
 
-/* ── CIRCUIT BOARD BG ── */
-.circuit-bg {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 0;
-}
+/* ─── CIRCUIT BG ─── */
+.circuit-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .circuit-bg svg { width: 100%; height: 100%; }
 
-/* ── SCANLINES ── */
+/* ─── SCANLINES ─── */
 body::after {
-  content: '';
-  position: fixed; inset: 0;
-  background: repeating-linear-gradient(to bottom, transparent 0px, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
+  content: ''; position: fixed; inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0px, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
   pointer-events: none; z-index: 9998;
 }
 body::before {
-  content: '';
-  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(transparent, rgba(255,20,20,0.07), transparent);
-  animation: scan 8s linear infinite;
-  pointer-events: none; z-index: 9999;
+  animation: scan 8s linear infinite; pointer-events: none; z-index: 9999;
 }
 @keyframes scan { 0% { top: -3px; } 100% { top: 100vh; } }
 
-/* ── PARTICLES ── */
+/* ─── PARTICLES ─── */
 #particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
 .particle { position: absolute; animation: drift linear infinite; opacity: 0; }
 @keyframes drift {
   0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 0.8; }
+  5%   { opacity: 1; } 95% { opacity: 0.8; }
   100% { transform: translateY(-10vh) translateX(var(--dx,0px)) rotate(360deg); opacity: 0; }
 }
 
-/* ── KEYFRAMES ── */
+/* ─── ANIMATIONS ─── */
 @keyframes glow-pulse {
   0%,100% { text-shadow: 0 0 15px var(--red-glow), 0 0 35px var(--red), 0 0 70px var(--red-dim); }
   50%      { text-shadow: 0 0 30px var(--red-glow), 0 0 70px var(--red-bright), 0 0 110px var(--red), 0 0 160px var(--red-dim); }
 }
 @keyframes glow-box {
-  0%,100% { box-shadow: 0 0 12px var(--red-dim), 0 0 35px rgba(180,0,0,0.3), inset 0 0 20px rgba(180,0,0,0.04); }
-  50%      { box-shadow: 0 0 25px var(--red), 0 0 70px rgba(180,0,0,0.45), 0 0 120px rgba(180,0,0,0.2), inset 0 0 40px rgba(180,0,0,0.07); }
+  0%,100% { box-shadow: 0 0 12px var(--red-dim), 0 0 35px rgba(180,0,0,0.3); }
+  50%      { box-shadow: 0 0 25px var(--red), 0 0 70px rgba(180,0,0,0.45), 0 0 120px rgba(180,0,0,0.2); }
 }
 @keyframes flicker {
   0%,18%,22%,25%,53%,57%,100% { opacity: 1; }
-  20%,24% { opacity: 0.25; }
-  54%,56% { opacity: 0.55; }
+  20%,24% { opacity: 0.25; } 54%,56% { opacity: 0.55; }
 }
 @keyframes glitch-main {
   0%,89%,100% { transform: translate(0); filter: none; clip-path: none; }
-  90% { transform: translate(-5px, 2px); filter: hue-rotate(90deg); clip-path: polygon(0 15%,100% 15%,100% 35%,0 35%); }
+  90% { transform: translate(-5px,2px); filter: hue-rotate(90deg); clip-path: polygon(0 15%,100% 15%,100% 35%,0 35%); }
   92% { transform: translate(5px,-2px); filter: hue-rotate(-90deg); clip-path: polygon(0 65%,100% 65%,100% 85%,0 85%); }
   94% { transform: translate(-2px,1px); filter: none; clip-path: none; }
 }
 @keyframes glitch-red {
   0%,87%,100% { transform: translate(0); opacity: 1; }
-  88% { transform: translate(8px, 0); opacity: 0.7; color: #ff0000; }
+  88% { transform: translate(8px,0); opacity: 0.7; color: #ff0000; }
   90% { transform: translate(-8px,3px); opacity: 0.7; color: #aa0000; }
   92% { transform: translate(0); opacity: 1; }
 }
-@keyframes rise { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@keyframes spin  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rise-in { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes spin    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes shake {
   0%,100% { transform: none; }
   15% { transform: translate(-6px,-2px) rotate(-0.5deg); }
   30% { transform: translate(6px,2px) rotate(0.5deg); }
-  45% { transform: translate(-4px,1px); }
-  60% { transform: translate(4px,-1px); }
+  45% { transform: translate(-4px,1px); } 60% { transform: translate(4px,-1px); }
 }
 @keyframes gradient-flow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
 }
-@keyframes border-anim {
+@keyframes border-pulse {
   0%,100% { border-color: var(--red-dim); }
   50%      { border-color: var(--red-bright); box-shadow: 0 0 20px rgba(255,30,30,0.3); }
 }
@@ -117,22 +104,23 @@ body::before {
 }
 @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ── NAV ── */
+/* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 18px 60px;
-  background: linear-gradient(to bottom, rgba(4,4,4,0.97), transparent);
-  border-bottom: 1px solid rgba(180,0,0,0.15);
+  display: flex; align-items: center; gap: 24px;
+  padding: 14px 40px;
+  background: rgba(4,4,4,0.97);
+  border-bottom: 1px solid rgba(180,0,0,0.2);
+  backdrop-filter: blur(4px);
 }
 .nav-logo {
-  font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 8px;
-  color: var(--red-bright); animation: glow-pulse 3s infinite; text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 8px;
+  color: var(--red-bright); text-decoration: none; animation: glow-pulse 3s infinite; flex-shrink: 0;
 }
-.nav-links { display: flex; gap: 36px; }
+.nav-links { display: flex; gap: 24px; flex: 1; justify-content: center; }
 .nav-links a {
-  color: var(--muted2); text-decoration: none; font-size: 0.65rem;
-  letter-spacing: 4px; text-transform: uppercase; transition: color 0.3s; position: relative;
+  color: var(--muted2); text-decoration: none; font-size: 0.62rem;
+  letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; position: relative; white-space: nowrap;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
@@ -141,7 +129,37 @@ nav {
 .nav-links a:hover { color: var(--red-bright); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
-/* ── HERO ── */
+/* ─── NAV CA ─── */
+.nav-ca {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--red-dim); padding: 6px 10px;
+  background: rgba(10,0,0,0.8); flex-shrink: 0;
+  animation: border-pulse 3s infinite; position: relative;
+}
+.nav-ca::before, .nav-ca::after {
+  content: ''; position: absolute; width: 6px; height: 6px; border-color: var(--red-bright); border-style: solid;
+}
+.nav-ca::before { top: -1px; left: -1px; border-width: 1.5px 0 0 1.5px; }
+.nav-ca::after  { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
+.nav-ca-label {
+  font-size: 0.55rem; letter-spacing: 3px; color: var(--red-bright); text-transform: uppercase;
+  padding-right: 8px; border-right: 1px solid var(--red-dim); white-space: nowrap;
+}
+.nav-ca-addr {
+  font-size: 0.6rem; color: rgba(220,200,200,0.65); white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+}
+.nav-ca-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--red-bright); color: #000; border: none; cursor: pointer;
+  padding: 4px 10px; font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
+  transition: all 0.2s; white-space: nowrap;
+}
+.nav-ca-btn:hover { background: #ff4444; }
+.nav-ca-btn.copied { background: #00cc66 !important; }
+
+/* ─── HERO ─── */
 #hero {
   position: relative; min-height: 100vh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -156,26 +174,24 @@ nav {
     var(--dark);
 }
 .hero-lightning { position: absolute; inset: 0; pointer-events: none; opacity: 0.55; animation: flicker 7s infinite 2s; }
-
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(7rem, 20vw, 16rem); line-height: 0.85; letter-spacing: 6px;
   color: var(--red-bright);
-  animation: glitch-main 6s infinite, rise 1.2s ease both, glow-pulse 3s infinite;
+  animation: glitch-main 6s infinite, rise-in 1.2s ease both, glow-pulse 3s infinite;
   position: relative; z-index: 3;
   text-shadow: 0 0 20px var(--red), 0 0 60px var(--red-dim), 5px 5px 0 var(--crimson);
 }
 .hero-title-period { color: #fff; opacity: 0.85; }
 .hero-sub {
   font-size: clamp(0.72rem,2vw,0.95rem); color: var(--muted2); letter-spacing: 5px;
-  text-transform: uppercase; margin: 20px 0 50px; animation: rise 1.4s ease 0.3s both;
+  text-transform: uppercase; margin: 20px 0 50px; animation: rise-in 1.4s ease 0.3s both;
 }
 .hero-sub em { color: var(--red-bright); font-style: normal; animation: flicker 3s infinite; }
 .hero-btns {
   display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
-  animation: rise 1.4s ease 0.5s both; position: relative; z-index: 3;
+  animation: rise-in 1.4s ease 0.5s both; position: relative; z-index: 3;
 }
-
 .btn {
   padding: 14px 40px; font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
   letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
@@ -192,12 +208,11 @@ nav {
 
 .embers { position: absolute; bottom: 0; left: 0; right: 0; height: 200px; pointer-events: none; }
 .ember {
-  position: absolute; bottom: 0; width: 3px; height: 3px;
-  background: var(--red-bright); border-radius: 50%;
+  position: absolute; bottom: 0; background: var(--red-bright); border-radius: 50%;
   animation: ember 3s ease-out infinite; box-shadow: 0 0 6px var(--red-bright);
 }
 
-/* ── SECTIONS ── */
+/* ─── SECTIONS ─── */
 section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden; }
 .sec-label { font-size: 0.58rem; letter-spacing: 5px; text-transform: uppercase; color: var(--red-dim); margin-bottom: 20px; display: block; }
 .sec-title {
@@ -209,7 +224,7 @@ section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden;
 .sec-body p { margin-bottom: 18px; }
 .hl { color: var(--red-bright); font-style: italic; }
 
-/* ── RISE ── */
+/* ─── RISE ─── */
 #rise { background: radial-gradient(ellipse 80% 60% at 0% 50%, rgba(120,0,0,0.07) 0%, transparent 60%), var(--dark2); }
 .rise-side { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 300px; height: 300px; }
 .rise-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(180,0,0,0.25); animation: spin 20s linear infinite; }
@@ -228,18 +243,17 @@ section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden;
   background: radial-gradient(circle, rgba(255,30,30,0.6), rgba(150,0,0,0.3), transparent);
   box-shadow: 0 0 30px rgba(255,30,30,0.4); animation: glow-box 2s infinite;
 }
-
 .stat-row { display: flex; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
 .stat-item { display: flex; flex-direction: column; gap: 4px; }
 .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--red-bright); line-height: 1; text-shadow: 0 0 15px var(--red-dim); }
 .stat-lbl { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; }
 
-/* ── FALL ── */
+/* ─── FALL ─── */
 #fall { background: radial-gradient(ellipse 70% 80% at 100% 50%, rgba(150,0,0,0.1) 0%, transparent 60%), var(--dark); }
 .fall-terminal {
   position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
   width: 280px; font-size: 0.68rem; border: 1px solid rgba(180,0,0,0.4);
-  padding: 20px; background: rgba(6,0,0,0.9); animation: border-anim 3s infinite;
+  padding: 20px; background: rgba(6,0,0,0.9); animation: border-pulse 3s infinite;
 }
 .t-bar { display: flex; gap: 6px; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(180,0,0,0.2); }
 .t-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -247,14 +261,13 @@ section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden;
 .t-dot:nth-child(2) { background: #ff9f0a; }
 .t-dot:nth-child(3) { background: #30d158; }
 .t-title { color: var(--muted2); font-size: 0.55rem; letter-spacing: 2px; margin: 0 auto; }
-.t-line { margin-bottom: 7px; color: rgba(220,180,180,0.7); animation: glitch-red 4s infinite; }
-.t-line:nth-child(odd) { animation-delay: 0.5s; }
+.t-line { margin-bottom: 7px; color: rgba(220,180,180,0.7); }
 .t-err { color: var(--red-bright); }
 .t-ok  { color: #44ff88; }
 .t-cursor::after { content: '█'; animation: flicker 1s infinite; color: var(--red-bright); }
 #fall .sec-title { animation: glitch-red 5s infinite; }
 
-/* ── TRUTH ── */
+/* ─── TRUTH ─── */
 #truth { background: var(--dark3); text-align: center; padding: 160px 60px; }
 #truth .sec-title {
   text-align: center; max-width: 800px; margin: 0 auto 40px;
@@ -273,32 +286,8 @@ section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden;
 .c-ring:nth-child(2) { inset: 20px; animation-duration: 5s; animation-direction: reverse; border-right-color: #ff6666; border-left-color: var(--crimson); border-top-color: transparent; border-bottom-color: transparent; }
 .c-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 4px; color: var(--red-bright); text-shadow: 0 0 15px var(--red); }
 
-/* ── TOKEN ── */
-#token {
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(120,0,0,0.1) 0%, transparent 70%), var(--dark2);
-  text-align: center;
-}
-#token .sec-title { text-align: center; color: var(--red-bright); text-shadow: 0 0 30px var(--red), 3px 3px 0 var(--crimson); }
-.token-card {
-  max-width: 680px; margin: 50px auto 0;
-  border: 1px solid rgba(180,0,0,0.3); padding: 48px;
-  background: rgba(8,0,0,0.7); position: relative; animation: border-anim 4s infinite;
-}
-.token-card::before, .token-card::after {
-  content: ''; position: absolute; width: 14px; height: 14px; border-color: var(--red-bright); border-style: solid;
-}
-.token-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-.token-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-.token-tag { font-size: 0.95rem; line-height: 1.8; color: rgba(220,200,200,0.7); margin-bottom: 40px; font-style: italic; }
-.token-tag strong { color: var(--red-bright); font-style: normal; }
-.token-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(180,0,0,0.2); margin-bottom: 40px; }
-.t-stat { background: var(--dark); padding: 24px; text-align: left; }
-.t-stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--red-bright); display: block; margin-bottom: 4px; text-shadow: 0 0 10px var(--red-dim); }
-.t-stat-l { font-size: 0.58rem; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; }
-.token-disc { font-size: 0.58rem; color: var(--muted2); letter-spacing: 2px; margin-top: 20px; opacity: 0.5; }
-
-/* ── COMMUNITY ── */
-#community { background: var(--dark3); text-align: center; }
+/* ─── COMMUNITY ─── */
+#community { background: var(--dark2); text-align: center; }
 #community .sec-title { text-align: center; color: #fff; text-shadow: 3px 3px 0 var(--red-dim); }
 .quotes-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
@@ -323,7 +312,59 @@ section { position: relative; padding: 120px 60px; z-index: 2; overflow: hidden;
 }
 .comm-btn:hover { transform: translateY(-3px); background: #ff4444; }
 
-/* ── FOOTER ── */
+/* ─── TOKEN ─── */
+#token {
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(120,0,0,0.1) 0%, transparent 70%), var(--dark3);
+  text-align: center;
+}
+#token .sec-title { text-align: center; color: var(--red-bright); text-shadow: 0 0 30px var(--red), 3px 3px 0 var(--crimson); }
+.token-card {
+  max-width: 680px; margin: 50px auto 0;
+  border: 1px solid rgba(180,0,0,0.3); padding: 48px;
+  background: rgba(8,0,0,0.7); position: relative; animation: border-pulse 4s infinite;
+}
+.token-card::before, .token-card::after {
+  content: ''; position: absolute; width: 14px; height: 14px; border-color: var(--red-bright); border-style: solid;
+}
+.token-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.token-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.token-tag { font-size: 0.95rem; line-height: 1.8; color: rgba(220,200,200,0.7); margin-bottom: 40px; font-style: italic; }
+.token-tag strong { color: var(--red-bright); font-style: normal; }
+.token-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(180,0,0,0.2); margin-bottom: 40px; }
+.tk-stat { background: var(--dark); padding: 24px; text-align: left; }
+.tk-stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--red-bright); display: block; margin-bottom: 4px; text-shadow: 0 0 10px var(--red-dim); }
+.tk-stat-l { font-size: 0.58rem; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; }
+.token-disc { font-size: 0.58rem; color: var(--muted2); letter-spacing: 2px; margin-top: 20px; opacity: 0.5; }
+
+/* ─── CHART ─── */
+#chart { background: var(--dark2); }
+#chart .sec-title { color: #fff; text-shadow: 3px 3px 0 var(--red-dim); }
+.chart-wrap {
+  border: 1px solid rgba(180,0,0,0.3); background: rgba(4,0,0,0.6);
+  position: relative; animation: border-pulse 4s infinite; max-width: 1200px;
+}
+.chart-wrap::before, .chart-wrap::after {
+  content: ''; position: absolute; width: 14px; height: 14px;
+  border-color: var(--red-bright); border-style: solid; z-index: 2;
+}
+.chart-wrap::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.chart-wrap::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.chart-header {
+  display: flex; align-items: center; gap: 16px; padding: 14px 20px;
+  border-bottom: 1px solid rgba(180,0,0,0.2); background: rgba(8,0,0,0.9); flex-wrap: wrap;
+}
+.chart-token { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 3px; color: var(--red-bright); text-shadow: 0 0 10px var(--red-dim); }
+.chart-powered { font-size: 0.58rem; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-right: auto; }
+.chart-ext-link {
+  font-size: 0.62rem; letter-spacing: 2px; color: var(--red-bright);
+  text-decoration: none; border: 1px solid var(--red-dim); padding: 5px 12px;
+  transition: all 0.3s; text-transform: uppercase;
+}
+.chart-ext-link:hover { border-color: var(--red-bright); box-shadow: 0 0 12px rgba(255,30,30,0.25); }
+.chart-frame-wrap { width: 100%; height: 600px; position: relative; background: #0a0a0a; }
+.chart-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ─── FOOTER ─── */
 footer {
   padding: 50px 60px; background: var(--dark);
   border-top: 1px solid rgba(180,0,0,0.2);
@@ -336,7 +377,7 @@ footer {
 .f-links a { font-size: 0.6rem; color: var(--muted2); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
 .f-links a:hover { color: var(--red-bright); }
 
-/* ── TICKER ── */
+/* ─── TICKER ─── */
 .ticker {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: rgba(4,0,0,0.96); border-top: 1px solid rgba(180,0,0,0.35);
@@ -349,16 +390,24 @@ footer {
 }
 .t-sep { color: var(--red-dim); }
 
-/* ── REVEAL ── */
+/* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
-@media (max-width: 768px) {
-  nav { padding: 14px 20px; }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 12px 16px; gap: 12px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 0.55rem; letter-spacing: 2px; }
+  .nav-ca-addr { display: none; }
+}
+@media (max-width: 680px) {
+  nav { flex-wrap: wrap; padding: 10px 16px; }
   .nav-links { display: none; }
   section { padding: 80px 20px; }
   .rise-side, .fall-terminal { display: none; }
   footer { padding: 30px 20px; flex-direction: column; text-align: center; }
+  .chart-frame-wrap { height: 400px; }
 }
 </style>
 </head>
@@ -378,34 +427,27 @@ footer {
       <line x1="880" y1="80" x2="880" y2="200"/><line x1="880" y1="200" x2="1180" y2="200"/>
       <circle cx="1180" cy="200" r="3" fill="rgba(180,0,0,0.45)"/>
       <line x1="1180" y1="200" x2="1440" y2="200"/>
-
       <line x1="0" y1="320" x2="220" y2="320"/><circle cx="220" cy="320" r="4" fill="rgba(200,0,0,0.5)"/>
       <line x1="220" y1="320" x2="220" y2="420"/><line x1="220" y1="420" x2="520" y2="420"/>
       <line x1="520" y1="420" x2="520" y2="320"/><line x1="520" y1="320" x2="820" y2="320"/>
       <circle cx="820" cy="320" r="5" fill="rgba(200,0,0,0.6)"/>
       <line x1="820" y1="320" x2="820" y2="520"/><line x1="820" y1="520" x2="1120" y2="520"/>
       <line x1="1120" y1="520" x2="1120" y2="320"/><line x1="1120" y1="320" x2="1440" y2="320"/>
-
       <line x1="0" y1="570" x2="380" y2="570"/><circle cx="380" cy="570" r="3" fill="rgba(180,0,0,0.4)"/>
       <line x1="380" y1="570" x2="380" y2="670"/><line x1="380" y1="670" x2="680" y2="670"/>
       <circle cx="680" cy="670" r="4" fill="rgba(180,0,0,0.5)"/>
       <line x1="680" y1="670" x2="680" y2="570"/><line x1="680" y1="570" x2="980" y2="570"/>
       <line x1="980" y1="570" x2="980" y2="720"/><line x1="980" y1="720" x2="1440" y2="720"/>
-
       <line x1="0" y1="780" x2="330" y2="780"/><circle cx="330" cy="780" r="3" fill="rgba(180,0,0,0.4)"/>
       <line x1="330" y1="780" x2="330" y2="850"/><line x1="330" y1="850" x2="630" y2="850"/>
       <line x1="630" y1="850" x2="630" y2="780"/><line x1="630" y1="780" x2="930" y2="780"/>
       <circle cx="930" cy="780" r="5" fill="rgba(200,0,0,0.6)"/>
       <line x1="930" y1="780" x2="930" y2="900"/><line x1="930" y1="900" x2="1440" y2="900"/>
-
-      <!-- IC pads -->
       <rect x="360" y="290" width="44" height="24" rx="2" stroke="rgba(160,0,0,0.45)"/>
       <rect x="730" y="490" width="44" height="24" rx="2" stroke="rgba(160,0,0,0.45)"/>
       <rect x="1030" y="175" width="44" height="24" rx="2" stroke="rgba(160,0,0,0.45)"/>
       <rect x="140" y="640" width="44" height="24" rx="2" stroke="rgba(160,0,0,0.45)"/>
       <rect x="1240" y="660" width="44" height="24" rx="2" stroke="rgba(160,0,0,0.45)"/>
-
-      <!-- Vertical traces -->
       <line x1="150" y1="0" x2="150" y2="240"/><line x1="440" y1="0" x2="440" y2="140"/>
       <line x1="990" y1="0" x2="990" y2="170"/><line x1="1290" y1="0" x2="1290" y2="95"/>
       <line x1="75" y1="580" x2="75" y2="900"/><line x1="1375" y1="490" x2="1375" y2="900"/>
@@ -415,22 +457,33 @@ footer {
 
 <div id="particles"></div>
 
-<!-- NAV -->
+<!-- ══════════ NAV ══════════ -->
 <nav>
   <a href="#hero" class="nav-logo">LIFE.</a>
   <div class="nav-links">
     <a href="#rise">Rise</a>
     <a href="#fall">Fall</a>
     <a href="#truth">Truth</a>
-    <a href="#token">Token</a>
     <a href="#community">Community</a>
+    <a href="#token">Token</a>
+    <a href="#chart">Chart</a>
+  </div>
+  <div class="nav-ca">
+    <span class="nav-ca-label">CA</span>
+    <span class="nav-ca-addr">ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump</span>
+    <button class="nav-ca-btn" id="copyBtn" onclick="copyCA()">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      <span id="copyLabel">Copy</span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ══════════ HERO ══════════ -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <!-- Lightning SVG -->
   <svg class="hero-lightning" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <filter id="lglow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -449,12 +502,12 @@ footer {
   <p class="hero-sub">From nothing… to everything… <em>to nothing again.</em></p>
   <div class="hero-btns">
     <a href="#rise" class="btn btn-red">Join the Journey</a>
-    <a href="https://x.com/i/communities/2035998823739470156" target="_blank" class="btn btn-outline">Enter X Community</a>
+    <a href="https://x.com" target="_blank" class="btn btn-outline">Enter X Community</a>
   </div>
   <div class="embers" id="embers"></div>
 </section>
 
-<!-- RISE -->
+<!-- ══════════ 01 · RISE ══════════ -->
 <section id="rise">
   <div class="rise-side">
     <div class="rise-ring"></div>
@@ -477,7 +530,7 @@ footer {
   </div>
 </section>
 
-<!-- FALL -->
+<!-- ══════════ 02 · FALL ══════════ -->
 <section id="fall">
   <div class="fall-terminal">
     <div class="t-bar">
@@ -492,7 +545,7 @@ footer {
     <div class="t-line"><span class="t-ok">still holding.</span></div>
     <div class="t-line"><span class="t-ok">still believing.</span></div>
     <div class="t-line"><span class="t-err">still losing.</span></div>
-    <div class="t-line t-cursor" style="margin-top:10px"> </div>
+    <div class="t-line t-cursor" style="margin-top:10px">&nbsp;</div>
   </div>
   <span class="sec-label reveal">// CHAPTER 02 — THE FALL</span>
   <h2 class="sec-title reveal">THE<br><span class="accent">BAD</span><br>STORY</h2>
@@ -503,13 +556,13 @@ footer {
     <p><span class="hl">You called it experience.</span><br>Everyone else called it a warning sign.</p>
   </div>
   <div class="stat-row reveal">
-    <div class="stat-item"><span class="stat-num">−99%</span><span class="stat-lbl">Reality check</span></div>
-    <div class="stat-item"><span class="stat-num">∞</span><span class="stat-lbl">Regrets (now)</span></div>
-    <div class="stat-item"><span class="stat-num">1</span><span class="stat-lbl">Lesson learned</span></div>
+    <div class="stat-item"><span class="stat-num" style="color:var(--red-bright)">−99%</span><span class="stat-lbl">Reality check</span></div>
+    <div class="stat-item"><span class="stat-num" style="color:var(--red-bright)">∞</span><span class="stat-lbl">Regrets (now)</span></div>
+    <div class="stat-item"><span class="stat-num" style="color:var(--red-bright)">1</span><span class="stat-lbl">Lesson learned</span></div>
   </div>
 </section>
 
-<!-- TRUTH -->
+<!-- ══════════ 03 · TRUTH ══════════ -->
 <section id="truth">
   <span class="sec-label reveal">// CHAPTER 03 — THE TRUTH</span>
   <h2 class="sec-title reveal">NOTHING<br>MAKES<br>SENSE</h2>
@@ -528,9 +581,38 @@ footer {
   </div>
 </section>
 
-<!-- TOKEN -->
+<!-- ══════════ 04 · COMMUNITY ══════════ -->
+<section id="community">
+  <span class="sec-label reveal">// CHAPTER 04 — THE PEOPLE</span>
+  <h2 class="sec-title reveal">WE'RE ALL<br>IN THIS<br>TOGETHER</h2>
+  <div class="quotes-grid">
+    <div class="q-card reveal">
+      <p class="q-text">bought the top, held through the bottom, still here. this is the most realistic token i've ever owned.</p>
+      <div class="q-author">@existential_degen</div>
+      <div class="q-pnl">PNL: -94% | Cope level: MAX</div>
+    </div>
+    <div class="q-card reveal">
+      <p class="q-text">$LIFE is the only coin that truly understands me. my therapist doesn't. my family doesn't. but this chart does.</p>
+      <div class="q-author">@wagmi_eventually</div>
+      <div class="q-pnl">PNL: +3% | Still processing</div>
+    </div>
+    <div class="q-card reveal">
+      <p class="q-text">sold at the bottom, bought back at the top. i am the market. i am the problem. i am $LIFE.</p>
+      <div class="q-author">@ngmi_but_nft</div>
+      <div class="q-pnl">PNL: it's fine. i'm fine.</div>
+    </div>
+    <div class="q-card reveal">
+      <p class="q-text">the whitepaper is just the book of job. i've never felt more understood by a financial instrument.</p>
+      <div class="q-author">@philosophymaxxer</div>
+      <div class="q-pnl">PNL: +infinite wisdom</div>
+    </div>
+  </div>
+  <a href="https://x.com" target="_blank" class="comm-btn reveal">Join us on X →</a>
+</section>
+
+<!-- ══════════ 05 · TOKEN ══════════ -->
 <section id="token">
-  <span class="sec-label reveal">// CHAPTER 04 — THE TOKEN</span>
+  <span class="sec-label reveal">// CHAPTER 05 — THE TOKEN</span>
   <h2 class="sec-title reveal">$LIFE</h2>
   <p class="truth-body reveal" style="margin:0 auto 10px;">You can't control LIFE…<br>but you can <strong style="color:var(--red-bright)">hold it.</strong></p>
   <div class="token-card reveal">
@@ -540,70 +622,66 @@ footer {
       Because LIFE always goes on. Until it doesn't.
     </p>
     <div class="token-grid">
-      <div class="t-stat"><span class="t-stat-n">$420.69M</span><span class="t-stat-l">Market Cap (emotional)</span></div>
-      <div class="t-stat"><span class="t-stat-n">69,420</span><span class="t-stat-l">Holders (surviving)</span></div>
-      <div class="t-stat"><span class="t-stat-n">∞</span><span class="t-stat-l">Supply (like problems)</span></div>
-      <div class="t-stat"><span class="t-stat-n">0</span><span class="t-stat-l">Utility (like life itself)</span></div>
+      <div class="tk-stat"><span class="tk-stat-n">$420.69M</span><span class="tk-stat-l">Market Cap (emotional)</span></div>
+      <div class="tk-stat"><span class="tk-stat-n">69,420</span><span class="tk-stat-l">Holders (surviving)</span></div>
+      <div class="tk-stat"><span class="tk-stat-n">∞</span><span class="tk-stat-l">Supply (like problems)</span></div>
+      <div class="tk-stat"><span class="tk-stat-n">0</span><span class="tk-stat-l">Utility (like life itself)</span></div>
     </div>
-    <a href="https://x.com" target="_blank" class="btn btn-red">Buy $LIFE ↗</a>
+    <a href="https://dexscreener.com/solana/ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump" target="_blank" class="btn btn-red">Buy $LIFE ↗</a>
     <p class="token-disc">* Not financial advice. Not any kind of advice. Just vibes.</p>
   </div>
 </section>
 
-<!-- COMMUNITY -->
-<section id="community">
-  <span class="sec-label reveal">// CHAPTER 05 — THE PEOPLE</span>
-  <h2 class="sec-title reveal">WE'RE ALL<br>IN THIS<br>TOGETHER</h2>
-  <div class="quotes-grid">
-    <div class="q-card reveal">
-      <p class="q-text">bought the top, held through the bottom, still here. this is the most realistic token i've ever owned.</p>
-     
-   
+<!-- ══════════ 06 · CHART ══════════ -->
+<section id="chart">
+  <span class="sec-label reveal">// CHAPTER 06 — THE CHART</span>
+  <h2 class="sec-title reveal">LIVE <span class="accent">CHART</span></h2>
+  <p class="sec-body reveal" style="margin-bottom:40px;">Watch the journey unfold in real time.<br>Every candle tells the story.</p>
+  <div class="chart-wrap reveal">
+    <div class="chart-header">
+      <span class="chart-token">$LIFE / USD</span>
+      <span class="chart-powered">Powered by DexScreener</span>
+      <a href="https://dexscreener.com/solana/ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump" target="_blank" class="chart-ext-link">Open Full Chart ↗</a>
     </div>
-    <div class="q-card reveal">
-      <p class="q-text">$LIFE is the only coin that truly understands me. my therapist doesn't. my family doesn't. but this chart does.</p>
-    
-      
-    </div>
-    <div class="q-card reveal">
-      <p class="q-text">sold at the bottom, bought back at the top. i am the market. i am the problem. i am $LIFE.</p>
-     
-    </div>
-    <div class="q-card reveal">
-      <p class="q-text">the whitepaper is just the book of job. i've never felt more understood by a financial instrument.</p>
-  
-     
+    <div class="chart-frame-wrap">
+      <iframe
+        src="https://dexscreener.com/solana/ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump?embed=1&theme=dark&trades=1&info=0"
+        frameborder="0"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
     </div>
   </div>
-  <a href="https://x.com/i/communities/2035998823739470156" target="_blank" class="comm-btn reveal">Join us on X →</a>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
   <div class="f-logo">LIFE.</div>
   <div class="f-motto">LIFE is temporary.<br><span>Memes are forever.</span></div>
   <div class="f-links">
-    <a href="https://x.com/i/communities/2035998823739470156" target="_blank">Twitter/X</a>
-    <a href="#"></a>
-    <a href="#"></a>
+    <a href="https://x.com" target="_blank">Twitter/X</a>
+    <a href="https://dexscreener.com/solana/ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump" target="_blank">Chart</a>
+    <a href="#token">Token</a>
   </div>
 </footer>
 
-<!-- TICKER -->
+<!-- ══════════ TICKER ══════════ -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT<span style="color:#ff4444">−∞%</span></span><span class="t-sep"> /// </span>
+    <span>$LIFE <span style="color:#ff4444">−∞%</span></span><span class="t-sep"> /// </span>
+    <span>BIRTH → GRIND → MOON → CRASH → COPE → REPEAT</span><span class="t-sep"> /// </span>
+    <span>CA: ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump</span><span class="t-sep"> /// </span>
+    <span>HOLDERS: 69,420</span><span class="t-sep"> /// </span>
+    <span>MCAP: $420.69M</span><span class="t-sep"> /// </span>
     <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
+    <span>NOTHING MAKES SENSE — AND THAT'S THE POINT</span><span class="t-sep"> /// </span>
+    <span>$LIFE <span style="color:#ff4444">−∞%</span></span><span class="t-sep"> /// </span>
+    <span>BIRTH → GRIND → MOON → CRASH → COPE → REPEAT</span><span class="t-sep"> /// </span>
+    <span>CA: ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump</span><span class="t-sep"> /// </span>
+    <span>HOLDERS: 69,420</span><span class="t-sep"> /// </span>
+    <span>MCAP: $420.69M</span><span class="t-sep"> /// </span>
     <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD ITM</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD ITT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT<span style="color:#ff4444">−∞%</span></span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD IT</span><span class="t-sep"> /// </span>
-    <span>YOU CAN'T CONTROL LIFE… BUT YOU CAN HOLD ITT</span><span class="t-sep"> /// </span>
+    <span>NOTHING MAKES SENSE — AND THAT'S THE POINT</span><span class="t-sep"> /// </span>
   </div>
 </div>
 
@@ -648,10 +726,36 @@ for (let i = 0; i < 30; i++) {
 // ── SCROLL REVEAL ──
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-// ── PERIODIC FALL TITLE SHAKE ──
+// ── COPY CA ──
+function copyCA() {
+  const ca = 'ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump';
+  const btn = document.getElementById('copyBtn');
+  const lbl = document.getElementById('copyLabel');
+  const finish = () => {
+    btn.classList.add('copied');
+    lbl.textContent = 'Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copy'; }, 2200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ca).then(finish).catch(() => {
+      fallbackCopy(ca); finish();
+    });
+  } else {
+    fallbackCopy(ca); finish();
+  }
+}
+function fallbackCopy(text) {
+  const el = document.createElement('textarea');
+  el.value = text; el.style.position = 'fixed'; el.style.opacity = '0';
+  document.body.appendChild(el); el.focus(); el.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(el);
+}
+
+// ── FALL TITLE GLITCH ──
 setInterval(() => {
   const t = document.querySelector('#fall .sec-title');
   if (!t) return;
